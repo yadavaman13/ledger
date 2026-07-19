@@ -12,6 +12,8 @@ app.use(
 );
 
 import { customerRouter } from "./routes/customer.route.js";
+import { accountRouter } from "./routes/account.route.js";
 
 //routes
 app.use("/api/customer", customerRouter);
+app.use("/api/account", accountRouter);

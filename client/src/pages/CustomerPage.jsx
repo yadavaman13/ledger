@@ -3,6 +3,7 @@ import axios from "axios";
 import Card from "../components/Card";
 
 const CustomerPage = () => {
+  
   const api = axios.create({
     baseURL: import.meta.env.VITE_APP_URL,
     withCredentials: true,
