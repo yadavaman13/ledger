@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 
 const accountSchema = new mongoose.Schema(
   {
-    name: {
+    accountNumber: {
       type: String,
-      required: [true, 'account name is required'],
+      required: [true, 'account number is required'],
       trim: true,
     },
     balance: {

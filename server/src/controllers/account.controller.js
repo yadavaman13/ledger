@@ -2,11 +2,11 @@ import { accountModel } from '../models/account.model.js';
 import { userModel } from '../models/customer.model.js';
 
 export async function createAccountController(req, res) {
-  const { name, balance, userId } = req.body;
+  const { accountNumber, balance, userId } = req.body;
 
-  if (!name || !userId) {
+  if (!accountNumber || !userId) {
     return res.status(400).json({
-      message: 'Both name and userId are required',
+      message: 'Both accountNumber and userId are required',
     });
   }
 
@@ -18,7 +18,7 @@ export async function createAccountController(req, res) {
       });
     }
 
-    const accountExists = await accountModel.findOne({ name, userId });
+    const accountExists = await accountModel.findOne({ accountNumber, userId });
     if (accountExists) {
       return res.status(400).json({
         message: 'An account already exists for this user',
@@ -26,7 +26,7 @@ export async function createAccountController(req, res) {
     }
 
     const account = await accountModel.create({
-      name,
+      accountNumber,
       balance: balance !== undefined ? balance : 0,
       userId,
     });
