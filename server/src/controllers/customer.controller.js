@@ -47,6 +47,54 @@ export async function deleteCustomerController(req, res) {
   });
 }
 
+export async function editCustomerController(req, res) {
+  const { email, newName, newEmail } = req.body;
+
+  if (!email) {
+    return res.status(400).json({
+      message: 'Email is required',
+    });
+  }
+
+  const user = await userModel.findOneAndUpdate(
+    { email: email },
+    {
+      name: newName,
+      email: newEmail,
+    },
+    {
+      new: true,
+    }
+  );
+
+  return res.status(200).json({
+    message: 'Customer details updated successfully',
+  });
+}
+
+export async function getCustomerByEmailController(req, res) {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({
+      message: 'Email is required',
+    });
+  }
+
+  const user = await userModel.findOne({ email });
+
+  if (!user) {
+    return res.status(400).json({
+      message: 'No user exists with this email',
+    });
+  }
+
+  return res.status(200).json({
+    message: 'user details fetched successfully',
+    user,
+  });
+}
+
 export async function getAllCustomerController(req, res) {
   const users = await userModel.find();
 

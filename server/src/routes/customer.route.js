@@ -5,7 +5,9 @@ export const customerRouter = expressRouter();
 import {
   createCustomerController,
   deleteCustomerController,
+  editCustomerController,
   getAllCustomerController,
+  getCustomerByEmailController,
 } from '../controllers/customer.controller.js';
 
 /**
@@ -18,9 +20,23 @@ customerRouter.post('/', createCustomerController);
 /**
  * @route /api/customer/delete
  * @description delete an user
- * @access public
+ * @access private
  */
 customerRouter.post('/delete', deleteCustomerController);
+
+/**
+ * @route /api/customer/edit
+ * @description edit user details
+ * @access private
+ */
+customerRouter.post('/edit', editCustomerController);
+
+/**
+ * @route /api/customer/getByEmail
+ * @description fetch user detail by email
+ * @access private
+ */
+customerRouter.get('/getByEmail', getCustomerByEmailController);
 
 /**
  * @route /api/customer/getAllCustomers

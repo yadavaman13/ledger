@@ -12,7 +12,7 @@ const AccountPage = () => {
         <h1 className="text-center font-bold text-4xl">Create Account</h1>
 
         <form>
-          <h1 className='mt-5'>Account Number</h1>
+          <h1 className="mt-5">Account Number</h1>
           <input
             className="border-2 border-b-white rounded-sm"
             type="text"
@@ -20,17 +20,21 @@ const AccountPage = () => {
             required="true"
             placeholder="Enter Account Number"
             value={accountNumber}
-            onChange={(e) => {setaccountNumber(e.target.accountNumber)}}
+            onChange={(e) => {
+              setaccountNumber(e.target.accountNumber);
+            }}
           />
 
-          <h1 className='mt-5'>Deposit Amount</h1>
+          <h1 className="mt-5">Deposit Amount</h1>
           <input
             className="border-2 border-b-white rounded-sm"
             type="number"
             required="true"
             placeholder="Enter initial deposit amount"
             value={amount}
-            onChange={(e) => {setamount(e.target.value)}}
+            onChange={(e) => {
+              setamount(e.target.value);
+            }}
           />
 
           <br />
