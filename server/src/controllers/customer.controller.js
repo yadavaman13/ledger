@@ -1,11 +1,11 @@
-import { userModel } from "../models/customer.model.js";
+import { userModel } from '../models/customer.model.js';
 
 export async function createCustomerController(req, res) {
   const { name, email } = req.body;
 
   if (!email || !name) {
     return res.status(400).json({
-      message: "both name and email are required",
+      message: 'both name and email are required',
     });
   }
 
@@ -13,7 +13,7 @@ export async function createCustomerController(req, res) {
 
   if (emailExists) {
     return res.status(400).json({
-      message: "Account already exists with this email",
+      message: 'Account already exists with this email',
     });
   }
 
@@ -23,7 +23,7 @@ export async function createCustomerController(req, res) {
   });
 
   return res.status(201).json({
-    message: "customer created",
+    message: 'customer created',
     user: {
       name,
       email,
@@ -36,14 +36,14 @@ export async function deleteCustomerController(req, res) {
 
   if (!email) {
     return res.status(400).json({
-      message: "Email is required",
+      message: 'Email is required',
     });
   }
 
   await userModel.findOneAndDelete({ email });
 
   res.status(200).json({
-    message: "user deleted successfully",
+    message: 'user deleted successfully',
   });
 }
 
@@ -51,7 +51,7 @@ export async function getAllCustomerController(req, res) {
   const users = await userModel.find();
 
   res.status(200).json({
-    message: "fetched",
+    message: 'fetched',
     users,
   });
 }

@@ -1,12 +1,12 @@
-import { accountModel } from "../models/account.model.js";
-import { userModel } from "../models/customer.model.js";
+import { accountModel } from '../models/account.model.js';
+import { userModel } from '../models/customer.model.js';
 
 export async function createAccountController(req, res) {
   const { name, balance, userId } = req.body;
 
   if (!name || !userId) {
     return res.status(400).json({
-      message: "Both name and userId are required",
+      message: 'Both name and userId are required',
     });
   }
 
@@ -14,14 +14,14 @@ export async function createAccountController(req, res) {
     const userExists = await userModel.findById(userId);
     if (!userExists) {
       return res.status(404).json({
-        message: "User not found",
+        message: 'User not found',
       });
     }
 
     const accountExists = await accountModel.findOne({ name, userId });
     if (accountExists) {
       return res.status(400).json({
-        message: "An account already exists for this user",
+        message: 'An account already exists for this user',
       });
     }
 
@@ -32,12 +32,12 @@ export async function createAccountController(req, res) {
     });
 
     return res.status(201).json({
-      message: "Account created successfully",
+      message: 'Account created successfully',
       account,
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Internal server error",
+      message: 'Internal server error',
       error: error.message,
     });
   }
@@ -48,7 +48,7 @@ export async function deleteAccountController(req, res) {
 
   if (!id) {
     return res.status(400).json({
-      message: "Account ID is required",
+      message: 'Account ID is required',
     });
   }
 
@@ -56,16 +56,16 @@ export async function deleteAccountController(req, res) {
     const deletedAccount = await accountModel.findByIdAndDelete(id);
     if (!deletedAccount) {
       return res.status(404).json({
-        message: "Account not found",
+        message: 'Account not found',
       });
     }
 
     return res.status(200).json({
-      message: "Account deleted successfully",
+      message: 'Account deleted successfully',
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Internal server error",
+      message: 'Internal server error',
       error: error.message,
     });
   }
@@ -76,7 +76,7 @@ export async function getAccountsByUserController(req, res) {
 
   if (!userId) {
     return res.status(400).json({
-      message: "User ID is required",
+      message: 'User ID is required',
     });
   }
 
@@ -84,19 +84,19 @@ export async function getAccountsByUserController(req, res) {
     const userExists = await userModel.findById(userId);
     if (!userExists) {
       return res.status(404).json({
-        message: "User not found",
+        message: 'User not found',
       });
     }
 
     const accounts = await accountModel.find({ userId });
 
     return res.status(200).json({
-      message: "Accounts fetched successfully",
+      message: 'Accounts fetched successfully',
       accounts,
     });
   } catch (error) {
     return res.status(500).json({
-      message: "Internal server error",
+      message: 'Internal server error',
       error: error.message,
     });
   }

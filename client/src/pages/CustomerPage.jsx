@@ -5,7 +5,7 @@ import Card from "../components/Card";
 const CustomerPage = () => {
   
   const api = axios.create({
-    baseURL: import.meta.env.VITE_APP_URL,
+    baseURL: '/api/customer',
     withCredentials: true,
   });
 
@@ -16,7 +16,7 @@ const CustomerPage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    await api.post("/api/customer", { name, email });
+    await api.post("/", { name, email });
 
     getData();
 
@@ -26,7 +26,7 @@ const CustomerPage = () => {
   };
 
   async function getData() {
-    const res = await api.get("/api/customer/getAllCustomers");
+    const res = await api.get("/getAllCustomers");
     const { users } = res.data;
 
     setUser(users);

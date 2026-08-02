@@ -1,22 +1,25 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const accountSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "account name is required"],
-    trim: true,
+const accountSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'account name is required'],
+      trim: true,
+    },
+    balance: {
+      type: Number,
+      default: 0,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      required: [true, 'user reference is required'],
+    },
   },
-  balance: {
-    type: Number,
-    default: 0,
-  },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-    required: [true, "user reference is required"],
-  },
-}, {
-  timestamps: true,
-});
+  {
+    timestamps: true,
+  }
+);
 
-export const accountModel = mongoose.model("account", accountSchema);
+export const accountModel = mongoose.model('account', accountSchema);

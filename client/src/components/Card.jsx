@@ -4,7 +4,7 @@ import axios from "axios";
 const Card = ({ name, email, onDelete }) => {
 
   const api = axios.create({
-    baseURL: import.meta.env.VITE_APP_URL,
+    baseURL: '/api/customer',
     withCredentials: true,
   });
 
@@ -12,7 +12,7 @@ const Card = ({ name, email, onDelete }) => {
     e.preventDefault();
 
     try {
-      await api.post(`/api/customer/delete`, { email });
+      await api.post('/delete', { email });
       if (onDelete) {
         onDelete();
       }
