@@ -1,11 +1,17 @@
-import React from "react";
-import { RouterProvider } from "react-router-dom";
-import { router } from "./app.routes";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import CustomerPage from './pages/CustomerPage';
+import AccountPage from './pages/AccountPage';
 
 const App = () => {
   return (
-      <RouterProvider router={router} />
-  )
+    <div>
+      <Routes>
+        <Route path="/" element={<CustomerPage />} />
+        <Route path="/account" element={<AccountPage />} />
+      </Routes>
+    </div>
+  );
 };
 
 export default App;

@@ -1,8 +1,7 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
 const Card = ({ name, email, onDelete }) => {
-
   const api = axios.create({
     baseURL: '/api/customer',
     withCredentials: true,
@@ -17,7 +16,7 @@ const Card = ({ name, email, onDelete }) => {
         onDelete();
       }
     } catch (error) {
-      console.error("Error deleting customer:", error);
+      console.error('Error deleting customer:', error);
     }
   };
 
