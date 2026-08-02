@@ -5,7 +5,9 @@ export const accountRouter = expressRouter();
 import {
   createAccountController,
   deleteAccountController,
+  depositMoneyController,
   getAccountsByUserController,
+  withdrawMoneyController,
 } from '../controllers/account.controller.js';
 
 /**
@@ -28,3 +30,17 @@ accountRouter.get('/user/:userId', getAccountsByUserController);
  * @access public
  */
 accountRouter.delete('/:id', deleteAccountController);
+
+/**
+ * @route POST /api/account/deposit
+ * @description deposit money
+ * @access private
+ */
+accountRouter.post('/deposit', depositMoneyController);
+
+/**
+ * @route POST /api/account/withdraw
+ * @description withdraw money
+ * @access private
+ */
+accountRouter.post('/withdraw', withdrawMoneyController);
