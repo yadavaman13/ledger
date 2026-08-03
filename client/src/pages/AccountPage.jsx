@@ -1,8 +1,26 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const AccountPage = () => {
-  const [accountNumber, setaccountNumber] = useState('');
-  const [amount, setamount] = useState('');
+
+  const [accountNumber, setAccountNumber] = useState('');
+  const [amount, setAmount] = useState(0);
+
+  const api = axios.create({
+    baseURL: '/api/account',
+    withCredentials: true
+  })
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    console.log(amount)
+
+    api.post('/', {accountNumber, amount})
+
+    setAmount('');
+    setAccountNumber('');
+  }
 
   return (
     <div className="h-screen w-vw bg-gray-700 text-white">
@@ -11,17 +29,16 @@ const AccountPage = () => {
       <div className="bg-gray-500 mx-30 my-20 px-30 py-20">
         <h1 className="text-center font-bold text-4xl">Create Account</h1>
 
-        <form>
+        <form onSubmit={submitHandler}>
           <h1 className="mt-5">Account Number</h1>
           <input
             className="border-2 border-b-white rounded-sm"
             type="text"
             id="accountNumber"
-            required="true"
             placeholder="Enter Account Number"
             value={accountNumber}
             onChange={(e) => {
-              setaccountNumber(e.target.accountNumber);
+              setAccountNumber(e.target.value);
             }}
           />
 
@@ -29,11 +46,11 @@ const AccountPage = () => {
           <input
             className="border-2 border-b-white rounded-sm"
             type="number"
-            required="true"
+            id="amount"
             placeholder="Enter initial deposit amount"
             value={amount}
             onChange={(e) => {
-              setamount(e.target.value);
+              setAmount(e.target.value);
             }}
           />
 

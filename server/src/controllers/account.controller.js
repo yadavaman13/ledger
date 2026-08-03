@@ -4,6 +4,8 @@ import { userModel } from '../models/customer.model.js';
 export async function createAccountController(req, res) {
   const { accountNumber, balance } = req.body;
 
+  console.log({balance})
+
   if (!accountNumber) {
     return res.status(400).json({
       message: 'accountNumber is required',
